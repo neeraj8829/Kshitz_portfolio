@@ -72,9 +72,26 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     // Check if View Transitions API is supported and user doesn't prefer reduced motion
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if ("startViewTransition" in document && !prefersReducedMotion) {
-      (document as unknown as { startViewTransition: (cb: () => void) => void }).startViewTransition(() => {
+      try {
+        const transition = (
+          document as unknown as {
+            startViewTransition: (cb: () => void) => {
+              ready?: Promise<void>;
+              finished?: Promise<void>;
+              updateCallbackDone?: Promise<void>;
+            };
+          }
+        ).startViewTransition(() => {
+          updateDOM();
+        });
+
+        // Catch AbortError when rapid clicks or animations trigger a new view transition
+        transition?.ready?.catch(() => {});
+        transition?.finished?.catch(() => {});
+        transition?.updateCallbackDone?.catch(() => {});
+      } catch {
         updateDOM();
-      });
+      }
     } else {
       // Fallback CSS transition class
       document.documentElement.classList.add("theme-transitioning");

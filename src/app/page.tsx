@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import Preloader from "@/components/ui/Preloader";
 import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/sections/Hero";
@@ -18,11 +18,14 @@ import Footer from "@/components/sections/Footer";
 
 export default function Home() {
   const [preloaderDone, setPreloaderDone] = useState(false);
+  const handlePreloaderComplete = useCallback(() => {
+    setPreloaderDone(true);
+  }, []);
 
   return (
     <>
       {/* A. Preloader Curtain */}
-      <Preloader onComplete={() => setPreloaderDone(true)} />
+      <Preloader onComplete={handlePreloaderComplete} />
 
       {/* B. Sticky Glass-Blur Navbar */}
       <Navbar />

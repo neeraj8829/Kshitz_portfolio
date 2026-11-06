@@ -125,7 +125,7 @@ export default function HeroPortraitFrame({
           <div className="w-full h-full p-2.5 rounded-t-[999px] rounded-b-[32px] bg-bg flex items-center justify-center">
             {/* Layer F: Photo Container (Arch Radius + overflow:hidden touches all edges) */}
             <motion.div
-              initial={{ clipPath: "inset(100% 0% 0% 0% round 999px 999px 28px 28px)" }}
+              initial={{ clipPath: "inset(0% 0% 100% 0% round 999px 999px 28px 28px)" }}
               animate={hasAnimated ? { clipPath: "inset(0% 0% 0% 0% round 999px 999px 28px 28px)" } : {}}
               transition={{ duration: 1.1, delay: 0.15, ease: WARM_EASE }}
               className="relative w-full h-full rounded-t-[999px] rounded-b-[28px] overflow-hidden bg-surface"

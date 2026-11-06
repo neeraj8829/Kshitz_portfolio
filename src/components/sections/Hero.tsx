@@ -43,7 +43,7 @@ export default function Hero({ hasAnimated = true }: HeroProps) {
           {/* Eyebrow Label */}
           <div className="overflow-hidden pb-1 mb-4">
             <motion.div
-              initial={{ y: "100%", opacity: 0 }}
+              initial={{ y: "-100%", opacity: 0 }}
               animate={hasAnimated ? { y: "0%", opacity: 1 } : {}}
               transition={{ duration: 0.6, ease: WARM_EASE }}
               className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface border border-warmBorder eyebrow-label"
@@ -58,7 +58,7 @@ export default function Hero({ hasAnimated = true }: HeroProps) {
             {/* Line 1: Hi, I'm Kshitiz. */}
             <div className="overflow-hidden pb-1.5 sm:pb-2">
               <motion.h1
-                initial={{ y: "115%", opacity: 0 }}
+                initial={{ y: "-115%", opacity: 0 }}
                 animate={hasAnimated ? { y: "0%", opacity: 1 } : {}}
                 transition={{ duration: 0.85, delay: 0.15, ease: WARM_EASE }}
                 className="hero-h1 text-primaryText"
@@ -70,7 +70,7 @@ export default function Hero({ hasAnimated = true }: HeroProps) {
             {/* Line 2 & Highlight: I design & build digital */}
             <div className="overflow-hidden pb-1.5 sm:pb-2">
               <motion.div
-                initial={{ y: "115%", opacity: 0 }}
+                initial={{ y: "-115%", opacity: 0 }}
                 animate={hasAnimated ? { y: "0%", opacity: 1 } : {}}
                 transition={{ duration: 0.85, delay: 0.25, ease: WARM_EASE }}
                 className="hero-h1 text-primaryText flex flex-wrap items-baseline gap-x-3 sm:gap-x-4"
@@ -85,7 +85,7 @@ export default function Hero({ hasAnimated = true }: HeroProps) {
             {/* Line 3: experiences. */}
             <div className="overflow-hidden pb-2 sm:pb-3">
               <motion.div
-                initial={{ y: "115%", opacity: 0 }}
+                initial={{ y: "-115%", opacity: 0 }}
                 animate={hasAnimated ? { y: "0%", opacity: 1 } : {}}
                 transition={{ duration: 0.85, delay: 0.35, ease: WARM_EASE }}
                 className="hero-h1 text-primaryText"
@@ -97,7 +97,7 @@ export default function Hero({ hasAnimated = true }: HeroProps) {
 
           {/* Short Intro Paragraph */}
           <motion.p
-            initial={{ opacity: 0, y: 25 }}
+            initial={{ opacity: 0, y: -25 }}
             animate={hasAnimated ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.5, ease: WARM_EASE }}
             className="mt-6 sm:mt-8 body-large"
@@ -107,7 +107,7 @@ export default function Hero({ hasAnimated = true }: HeroProps) {
 
           {/* CTAs */}
           <motion.div
-            initial={{ opacity: 0, y: 25 }}
+            initial={{ opacity: 0, y: -25 }}
             animate={hasAnimated ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.65, ease: WARM_EASE }}
             className="mt-8 sm:mt-10 flex flex-wrap items-center gap-4 sm:gap-5"
@@ -134,7 +134,7 @@ export default function Hero({ hasAnimated = true }: HeroProps) {
 
           {/* Social Icons Row */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: -20 }}
             animate={hasAnimated ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.8, ease: WARM_EASE }}
             className="mt-8 flex items-center gap-3"
@@ -174,7 +174,7 @@ export default function Hero({ hasAnimated = true }: HeroProps) {
 
       {/* Stats Row with Animated Counters */}
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: -20 }}
         animate={hasAnimated ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8, delay: 0.9, ease: WARM_EASE }}
         className="mt-16 pt-8 border-t border-warmBorder grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8"

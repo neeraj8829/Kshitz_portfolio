@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { siteData } from "@/data/site";
 
@@ -9,38 +9,42 @@ const WARM_EASE = [0.22, 1, 0.36, 1] as const;
 export default function Preloader({ onComplete }: { onComplete: () => void }) {
   const [count, setCount] = useState(0);
   const [isDone, setIsDone] = useState(false);
+  const onCompleteRef = useRef(onComplete);
+  onCompleteRef.current = onComplete;
 
   useEffect(() => {
-    // Check if user already saw preloader in this session
-    const seen = sessionStorage.getItem("kshitiz_preloader_seen");
-    if (seen) {
-      setIsDone(true);
-      onComplete();
-      return;
-    }
+    let animId: number;
+    let startTime: number | null = null;
+    const duration = 1600; // 1.6s smooth cinematic counter
 
-    const duration = 2100; // ~2.1 seconds
-    const intervalTime = 20;
-    const totalSteps = duration / intervalTime;
-    let step = 0;
+    const animate = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+      const progress = Math.min(elapsed / duration, 1);
 
-    const timer = setInterval(() => {
-      step++;
-      const currentProgress = Math.min(100, Math.round((step / totalSteps) * 100));
-      setCount(currentProgress);
+      // Smooth ease-out cubic progression
+      const ease = 1 - Math.pow(1 - progress, 3);
+      const currentVal = Math.min(100, Math.round(ease * 100));
+      setCount(currentVal);
 
-      if (currentProgress >= 100) {
-        clearInterval(timer);
-        sessionStorage.setItem("kshitiz_preloader_seen", "true");
+      if (progress < 1) {
+        animId = requestAnimationFrame(animate);
+      } else {
+        setCount(100);
         setTimeout(() => {
           setIsDone(true);
-          onComplete();
-        }, 300);
+          onCompleteRef.current?.();
+        }, 320);
       }
-    }, intervalTime);
+    };
 
-    return () => clearInterval(timer);
-  }, [onComplete]);
+    // Start counter animation
+    animId = requestAnimationFrame(animate);
+
+    return () => {
+      cancelAnimationFrame(animId);
+    };
+  }, []); // Run once on mount; never re-trigger on parent re-renders
 
   const nameLetters = siteData.profile.name.split("");
 
@@ -51,16 +55,16 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
           key="kshitiz-preloader"
           initial={{ y: 0 }}
           exit={{
-            y: "-100%",
+            y: "100%",
             transition: {
-              duration: 0.95,
+              duration: 0.85,
               ease: WARM_EASE,
             },
           }}
-          className="fixed inset-0 z-[100] flex flex-col items-center justify-between bg-cream text-espresso p-8 md:p-16 select-none pointer-events-auto"
+          className="fixed inset-0 z-[100] flex flex-col items-center justify-between bg-[var(--bg)] text-[var(--text)] p-8 md:p-16 select-none pointer-events-auto"
         >
           {/* Top Eyebrow */}
-          <div className="w-full flex items-center justify-between text-xs tracking-widest uppercase text-taupe font-mono">
+          <div className="w-full flex items-center justify-between text-xs tracking-widest uppercase text-[var(--muted)] font-sans font-semibold">
             <span>{siteData.profile.eyebrow}</span>
             <span>{siteData.profile.location.split("(")[0].trim()}</span>
           </div>
@@ -74,11 +78,11 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
                   initial={{ y: "120%", opacity: 0 }}
                   animate={{ y: "0%", opacity: 1 }}
                   transition={{
-                    duration: 0.7,
-                    delay: 0.15 + index * 0.08,
+                    duration: 0.6,
+                    delay: 0.1 + index * 0.06,
                     ease: WARM_EASE,
                   }}
-                  className="font-heading text-5xl sm:text-7xl md:text-8xl font-extrabold tracking-tight text-primaryText inline-block"
+                  className="font-heading text-5xl sm:text-7xl md:text-8xl font-extrabold tracking-tight text-[var(--text)] inline-block"
                 >
                   {letter}
                 </motion.span>
@@ -86,8 +90,8 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
               <motion.span
                 initial={{ scale: 0, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.15 + nameLetters.length * 0.08, duration: 0.4 }}
-                className="font-heading text-5xl sm:text-7xl md:text-8xl font-extrabold text-accent inline-block"
+                transition={{ delay: 0.1 + nameLetters.length * 0.06, duration: 0.4 }}
+                className="font-heading text-5xl sm:text-7xl md:text-8xl font-extrabold text-[var(--accent)] inline-block"
               >
                 .
               </motion.span>
@@ -95,27 +99,37 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
             <motion.p
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8, duration: 0.5 }}
-              className="mt-3 text-taupe text-sm tracking-widest uppercase font-mono"
+              transition={{ delay: 0.5, duration: 0.5 }}
+              className="mt-3 text-[var(--muted)] text-xs sm:text-sm tracking-widest uppercase font-sans font-semibold"
             >
               Portfolio &amp; Selected Works
             </motion.p>
           </div>
 
           {/* Bottom Progress Bar & Counter */}
-          <div className="w-full max-w-5xl mx-auto flex items-end justify-between font-mono">
-            <div className="flex items-center gap-3">
-              <span className="w-2.5 h-2.5 rounded-full bg-sage animate-ping" />
-              <span className="text-xs uppercase tracking-wider text-taupe">
-                Loading Interface &amp; Projects
-              </span>
+          <div className="w-full max-w-5xl mx-auto flex flex-col gap-3 font-sans">
+            {/* Smooth hairline progress track */}
+            <div className="w-full h-[2px] bg-[var(--surface-2)] rounded-full overflow-hidden">
+              <div
+                className="h-full bg-[var(--accent)] transition-all duration-75 ease-out rounded-full"
+                style={{ width: `${count}%` }}
+              />
             </div>
 
-            <div className="flex items-baseline gap-1">
-              <span className="text-4xl sm:text-6xl font-bold tabular-nums tracking-tighter text-primaryText font-heading">
-                {count}
-              </span>
-              <span className="text-accent font-heading text-2xl font-bold">%</span>
+            <div className="flex items-end justify-between">
+              <div className="flex items-center gap-3">
+                <span className="w-2.5 h-2.5 rounded-full bg-[var(--accent-2)] animate-pulse" />
+                <span className="text-xs uppercase tracking-wider text-[var(--muted)] font-semibold">
+                  Loading Interface &amp; Projects
+                </span>
+              </div>
+
+              <div className="flex items-baseline gap-1">
+                <span className="text-4xl sm:text-6xl font-bold tabular-nums tracking-tighter text-[var(--text)] font-heading">
+                  {count}
+                </span>
+                <span className="text-[var(--accent)] font-heading text-2xl font-bold">%</span>
+              </div>
             </div>
           </div>
         </motion.div>
