@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1250" width="1000" height="1250">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EFE6D8"/>
+      <stop offset="50%" stop-color="#E8DCCA"/>
+      <stop offset="100%" stop-color="#DFD2BF"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D96C4A"/>
+      <stop offset="100%" stop-color="#C35A39"/>
+    </linearGradient>
+    <linearGradient id="sageGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8A9A78"/>
+      <stop offset="100%" stop-color="#6F8F72"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="16" stdDeviation="24" flood-color="#2B2420" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="1000" height="1250" fill="url(#bgGrad)"/>
+
+  <!-- Geometric Architectural Arches & Spheres in Background -->
+  <circle cx="820" cy="300" r="280" fill="url(#accentGrad)" opacity="0.18"/>
+  <rect x="80" y="200" width="360" height="520" rx="180" fill="url(#sageGrad)" opacity="0.22" transform="rotate(-12 260 460)"/>
+  <circle cx="200" cy="980" r="220" fill="url(#accentGrad)" opacity="0.15"/>
+
+  <!-- Character Silhouette Group -->
+  <g filter="url(#shadow)" transform="translate(0, 80)">
+    <!-- Shoulders & Coat -->
+    <path d="M 220 1170 C 240 850, 340 760, 500 760 C 660 760, 760 850, 780 1170 Z" fill="#2B2420"/>
+
+    <!-- Inner Collar / Turtleneck -->
+    <path d="M 390 760 L 610 760 L 590 880 L 410 880 Z" fill="#3D332D"/>
+    <path d="M 430 680 L 570 680 L 565 770 L 435 770 Z" fill="#D96C4A"/>
+
+    <!-- Neck -->
+    <rect x="445" y="550" width="110" height="150" rx="20" fill="#E8B896"/>
+
+    <!-- Head & Face Structure -->
+    <ellipse cx="500" cy="460" rx="145" ry="185" fill="#F4CCA8"/>
+
+    <!-- Hair Silhouette (Modern Textured Crop) -->
+    <path d="M 345 440 C 330 320, 390 220, 500 210 C 620 220, 670 320, 655 440 C 640 370, 610 320, 500 320 C 390 320, 360 370, 345 440 Z" fill="#201A18"/>
+    <path d="M 335 430 C 330 360, 370 260, 480 230 C 580 200, 660 260, 665 370 C 640 280, 580 250, 480 250 C 390 250, 345 320, 335 430 Z" fill="#2B2420"/>
+
+    <!-- Ears -->
+    <ellipse cx="350" cy="470" rx="20" ry="35" fill="#E8B896"/>
+    <ellipse cx="650" cy="470" rx="20" ry="35" fill="#E8B896"/>
+
+    <!-- Architectural Glasses (Modern Minimalist Frame) -->
+    <rect x="380" y="420" width="105" height="75" rx="24" fill="none" stroke="#2B2420" stroke-width="12"/>
+    <rect x="515" y="420" width="105" height="75" rx="24" fill="none" stroke="#2B2420" stroke-width="12"/>
+    <line x1="485" y1="455" x2="515" y2="455" stroke="#2B2420" stroke-width="12"/>
+    <line x1="350" y1="450" x2="380" y2="450" stroke="#2B2420" stroke-width="10"/>
+    <line x1="620" y1="450" x2="650" y2="450" stroke="#2B2420" stroke-width="10"/>
+
+    <!-- Eyes (Subtle Minimalist Lines) -->
+    <path d="M 410 460 Q 432 468 455 460" stroke="#2B2420" stroke-width="6" stroke-linecap="round" fill="none"/>
+    <path d="M 545 460 Q 567 468 590 460" stroke="#2B2420" stroke-width="6" stroke-linecap="round" fill="none"/>
+
+    <!-- Eyebrows -->
+    <path d="M 395 405 Q 435 395 470 410" stroke="#201A18" stroke-width="8" stroke-linecap="round" fill="none"/>
+    <path d="M 530 410 Q 565 395 605 405" stroke="#201A18" stroke-width="8" stroke-linecap="round" fill="none"/>
+
+    <!-- Nose -->
+    <path d="M 500 455 L 490 515 L 515 515" stroke="#D39E7B" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+    <!-- Gentle Confident Smile -->
+    <path d="M 455 560 Q 500 585 545 560" stroke="#B86F58" stroke-width="7" stroke-linecap="round" fill="none"/>
+  </g>
+
+  <!-- Editorial Monogram Badge in Corner -->
+  <g transform="translate(680, 1020)">
+    <circle cx="70" cy="70" r="60" fill="#D96C4A"/>
+    <text x="70" y="88" font-family="system-ui, -apple-system, sans-serif" font-size="52" font-weight="800" fill="#FFF8EF" text-anchor="middle">K</text>
+  </g>
+</svg>
+

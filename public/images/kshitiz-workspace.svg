@@ -1,0 +1,75 @@
+<svg width="600" height="600" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="workspaceBg" x1="0" y1="0" x2="600" y2="600" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#EFE6D8"/>
+      <stop offset="100%" stop-color="#E2D5C3"/>
+    </linearGradient>
+    <linearGradient id="laptopScreen" x1="160" y1="180" x2="440" y2="360" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2B2420"/>
+      <stop offset="100%" stop-color="#3D342E"/>
+    </linearGradient>
+    <linearGradient id="accentGlow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#D96C4A" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#8A9A78" stop-opacity="0.2"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="600" height="600" fill="url(#workspaceBg)"/>
+
+  <!-- Subtle grid lines -->
+  <g stroke="#D8CBB9" stroke-width="1" stroke-dasharray="4 6" opacity="0.6">
+    <line x1="100" y1="0" x2="100" y2="600"/>
+    <line x1="200" y1="0" x2="200" y2="600"/>
+    <line x1="300" y1="0" x2="300" y2="600"/>
+    <line x1="400" y1="0" x2="400" y2="600"/>
+    <line x1="500" y1="0" x2="500" y2="600"/>
+    <line x1="0" y1="100" x2="600" y2="100"/>
+    <line x1="0" y1="200" x2="600" y2="200"/>
+    <line x1="0" y1="300" x2="600" y2="300"/>
+    <line x1="0" y1="400" x2="600" y2="400"/>
+    <line x1="0" y1="500" x2="600" y2="500"/>
+  </g>
+
+  <!-- Desk mat / pad -->
+  <rect x="80" y="140" width="440" height="340" rx="24" fill="#F7F1E8" stroke="#D8CBB9" stroke-width="2"/>
+
+  <!-- Laptop Body -->
+  <!-- Screen Lid -->
+  <rect x="170" y="180" width="260" height="170" rx="14" fill="url(#laptopScreen)" stroke="#2B2420" stroke-width="3"/>
+  <!-- Screen Display Area -->
+  <rect x="182" y="192" width="236" height="146" rx="6" fill="#1C1714"/>
+  
+  <!-- Code lines on screen -->
+  <rect x="200" y="214" width="45" height="6" rx="3" fill="#D96C4A"/>
+  <rect x="252" y="214" width="70" height="6" rx="3" fill="#8A9A78"/>
+  <rect x="216" y="230" width="90" height="6" rx="3" fill="#EFE6D8" opacity="0.8"/>
+  <rect x="216" y="246" width="120" height="6" rx="3" fill="#EFE6D8" opacity="0.6"/>
+  <rect x="232" y="262" width="80" height="6" rx="3" fill="#D96C4A" opacity="0.9"/>
+  <rect x="216" y="278" width="60" height="6" rx="3" fill="#8A9A78" opacity="0.7"/>
+  <rect x="200" y="294" width="30" height="6" rx="3" fill="#D96C4A"/>
+
+  <!-- Laptop Base / Keyboard deck -->
+  <path d="M 130 350 L 470 350 L 485 372 C 485 376 480 380 475 380 L 125 380 C 120 380 115 376 115 372 Z" fill="#D2C4B2" stroke="#B8A894" stroke-width="2"/>
+  <!-- Trackpad -->
+  <rect x="260" y="356" width="80" height="18" rx="4" fill="#C4B4A0"/>
+
+  <!-- Coffee Cup -->
+  <circle cx="430" cy="420" r="28" fill="#F7F1E8" stroke="#D96C4A" stroke-width="3"/>
+  <circle cx="430" cy="420" r="21" fill="#4A3428"/>
+  <!-- Cup Handle -->
+  <path d="M 456 410 C 466 414 466 426 456 430" fill="none" stroke="#D96C4A" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Notebook & Pen -->
+  <rect x="110" y="390" width="85" height="65" rx="6" fill="#8A9A78" opacity="0.85"/>
+  <line x1="125" y1="405" x2="180" y2="405" stroke="#F7F1E8" stroke-width="2" stroke-linecap="round"/>
+  <line x1="125" y1="418" x2="175" y2="418" stroke="#F7F1E8" stroke-width="2" stroke-linecap="round"/>
+  <line x1="125" y1="431" x2="160" y2="431" stroke="#F7F1E8" stroke-width="2" stroke-linecap="round"/>
+  <line x1="205" y1="392" x2="205" y2="450" stroke="#2B2420" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Minimal watermark -->
+  <text x="300" y="525" text-anchor="middle" font-family="'Inter', sans-serif" font-size="13" font-weight="600" fill="#7A6F64" letter-spacing="3">
+    KSHITIZ • WORKSPACE
+  </text>
+</svg>
+
